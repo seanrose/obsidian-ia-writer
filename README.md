@@ -2,10 +2,9 @@
 
 A simple plugin for [Obsidian](https://obsidian.md) that adds a command to open your current note in iA Writer. Perfect for when you need to switch to iA Writer's focused writing environment.
 
-## Features
-
+## What it does
 - Adds a command "Open current note" to open the active note in iA Writer
-- Works seamlessly with your existing Obsidian vault structure
+    - Leverages [iA Writer's URL commands](https://ia.net/writer/support/help/url-commands) to do this.
 - Provides feedback via notices when opening files or if errors occur
 
 ## Requirements

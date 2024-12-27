@@ -36,26 +36,28 @@ export default class OpenInIaWriterPlugin extends Plugin {
       return;
     }
 
-    // Get the absolute path to the vault
-    const vaultAbsolutePath =
-      // @ts-expect-error: 'basePath' exists but is not typed in the API
-      this.app.vault.adapter?.basePath ?? "";
+    // Read the file content
+    const content = await this.app.vault.read(file);
+    
+    // Encode the content for the URL
+    const encodedContent = encodeURIComponent(content);
+    const encodedFileName = encodeURIComponent(file.name);
+    
+    // Create the iA Writer URL to create a new document
+    const iaWriterUrl = `ia-writer://new?text=${encodedContent}&path=${encodedFileName}`;
 
-    if (!vaultAbsolutePath) {
-      new Notice("Could not determine vault path.");
-      return;
+    // Same opening logic as before...
+    if (process.platform === 'darwin') {
+      exec(`open "${iaWriterUrl}"`, (error) => {
+        if (error) {
+          new Notice(`Failed to open in iA Writer: ${error.message}`);
+        } else {
+          new Notice(`Opened ${file.name} in iA Writer`);
+        }
+      });
+    } else {
+      window.open(iaWriterUrl, '_blank');
+      new Notice(`Attempted to open ${file.name} in iA Writer`);
     }
-
-    // Combine the vault path with the relative path to get an absolute path
-    const absoluteFilePath = path.join(vaultAbsolutePath, file.path);
-
-    // Use the macOS `open -a "iA Writer" "<filepath>"` command
-    exec(`open -a "iA Writer" "${absoluteFilePath}"`, (error) => {
-      if (error) {
-        new Notice(`Failed to open in iA Writer: ${error.message}`);
-      } else {
-        new Notice(`Opened ${file.name} in iA Writer`);
-      }
-    });
   }
 }
