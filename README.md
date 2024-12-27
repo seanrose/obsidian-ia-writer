@@ -33,6 +33,8 @@ A simple plugin for [Obsidian](https://obsidian.md) that adds a command to open 
 3. Hit enter
 4. Your note will open in iA Writer
 
+![Obsidian iA Writer Plugin GIF](./demo.gif)
+
 ## Upcoming Features
 
 I've only built and tested MacOS support. Upcoming:
