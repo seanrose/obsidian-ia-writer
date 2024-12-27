@@ -1,0 +1,10 @@
+{
+	"id": "ia-writer",
+	"name": "iA Writer",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "Adds a command to open the currently active note in iA Writer.",
+	"author": "Sean Rose",
+	"authorUrl": "https://seanro.se",
+	"isDesktopOnly": true
+}
