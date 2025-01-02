@@ -1,6 +1,5 @@
 import { App, Notice, Plugin, TFile } from "obsidian";
 import { exec } from "child_process";
-import * as path from "path";
 
 /**
  * Plugin that enables opening the current Obsidian note in iA Writer.
@@ -36,17 +35,17 @@ export default class OpenInIaWriterPlugin extends Plugin {
       return;
     }
 
-    // Read the file content
-    const content = await this.app.vault.read(file);
+    // Get the vault name from the last part of the vault path
+    const vaultName = this.app.vault.getName();
     
-    // Encode the content for the URL
-    const encodedContent = encodeURIComponent(content);
-    const encodedFileName = encodeURIComponent(file.name);
+    // Create the iA Writer URL using the vault name as the library location
+    const iaWriterUrl = `ia-writer://open?path=${vaultName}:/${file.path}`;
     
-    // Create the iA Writer URL to create a new document
-    const iaWriterUrl = `ia-writer://new?text=${encodedContent}&path=${encodedFileName}`;
+    // Debug logging
+    console.log('Vault name:', vaultName);
+    console.log('Original file path:', file.path);
+    console.log('URL:', iaWriterUrl);
 
-    // Same opening logic as before...
     if (process.platform === 'darwin') {
       exec(`open "${iaWriterUrl}"`, (error) => {
         if (error) {
