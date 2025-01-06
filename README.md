@@ -24,6 +24,7 @@ A simple plugin for [Obsidian](https://obsidian.md) that adds a command to open 
 2. Extract the files into your vault's plugins folder: `<vault>/.obsidian/plugins/ia-writer/`
 3. Reload Obsidian
 4. Enable the plugin in Settings > Community plugins
+5. Ensure your Obsidian vault is [added as a library location in iA Writer](https://ia.net/writer/support/library/cloud-storage?tab=mac)
 
 ## Usage
 
