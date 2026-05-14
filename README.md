@@ -55,6 +55,22 @@ A plugin for [Obsidian](https://obsidian.md) that lets you open notes in [iA Wri
 
 ![Obsidian iA Writer Plugin GIF](./demo.gif)
 
+## Development
+
+```bash
+npm install
+npm run dev     # rebuild on save
+npm run build   # one-off production build
+```
+
+To test against a real vault, symlink the build outputs into your vault's plugin folder:
+
+```bash
+npm run link-to-vault -- /path/to/vault/.obsidian/plugins/ia-writer
+```
+
+This symlinks `main.js` and `manifest.json` from the repo into the target directory, so subsequent builds are picked up automatically — just reload the plugin in Obsidian (Settings → Community plugins, toggle off/on) to apply.
+
 ## Support
 
 For bug reports and feature requests, please use the [GitHub issue tracker](https://github.com/seanrose/obsidian-ia-writer/issues).
