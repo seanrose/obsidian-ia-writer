@@ -100,8 +100,10 @@ export default class OpenInIaWriterPlugin extends Plugin {
 	 * Builds an iA Writer URL for the given command and parameters.
 	 */
 	private buildIAWriterUrl(command: string, params: Record<string, string>): string {
-		const searchParams = new URLSearchParams(params);
-		return `ia-writer://${command}?${searchParams.toString()}`;
+		const query = Object.entries(params)
+			.map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+			.join("&");
+		return `ia-writer://${command}?${query}`;
 	}
 
 	/**
